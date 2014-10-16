@@ -34,5 +34,5 @@ folhaspulverizadas (fi, fd) dias = fi + fd*dias
 
 q1 vv vp [] li dc = []
 q1 vv vp (p:ps) insetos dc 
-		|vp< vv*(folhasInsetos dc p li) = p:(q1 vv vp ps insetos dc)		
+		|((folhaspulverizadas p dc)*vv -vp)< vv*(folhasInsetos dc p li) = p:(q1 vv vp ps insetos dc)		
 		|otherwise = (q1 vv vp ps insetos dc)		

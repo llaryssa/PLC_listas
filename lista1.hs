@@ -49,10 +49,32 @@ pref = 'm'
 result = filtroGerarPares list pref
 
 
--- Testando uma outra questão que eu n sei o número
-f [] s = True
-f s [] = False
-f (a:as) (b:bs) = if a==b then f as bs else False
+-- questao 7
 
-g w [] = []
-g w (l:ls) = if (f w l) then l:(g w ls) else g w ls
+checaOrdenacao :: [String] -> (String->String->Bool) -> ([String], Bool)
+checaOrdenacao l f | l == ordenada = (ordenada, True)
+				   | otherwise     = (ordenada, False)
+				   where ordenada = sort l f
+
+sort :: [String] -> (String->String->Bool) -> [String]
+sort [] f = []
+sort (a:as) f = sort [b | b <- as, (f a b)] f
+					   ++ [a] ++
+				sort [c | c <- as, not (f a c)] f
+
+words = ["mandibula", "amor", "bola", "dor", "dragao", "manda", "xixi", "lilas", "vaso"]
+
+-- questao 8
+
+checkPalavra [] s = True
+checkPalavra s [] = False
+checkPalavra (a:as) (b:bs) = if (a==b) || (abs(fromEnum a - fromEnum b) == 32) then 
+								checkPalavra as bs 
+							  else False
+
+buscaPalavra w [] = []
+buscaPalavra w (l:ls) = if (checkPalavra w l) then 
+				l:(buscaPalavra w ls)
+			 else buscaPalavra w ls
+
+

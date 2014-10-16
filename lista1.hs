@@ -1,0 +1,1 @@
+teste a b = a + b

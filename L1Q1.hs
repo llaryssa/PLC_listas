@@ -25,18 +25,14 @@ folhasdepoisdeInsetos fi [] = fi
 folhasdepoisdeInsetos fi (((fd,(fmin,fmax)):xs)
 											|(fmin<=fi&&fmax>=fi)  = folhasdepoisdeInsetos (fi - fd) xs
 											|otherwise = folhasdepoisdeInsetos fi xs
+folhasInsetos dias  planta [] = fi + dias*fd
+folhasInsetos dias  (fi, fd) insetos 
+						| (dias == 0) = fi
+						| otherwise = folhasInsetos (dias-1) (folhasdepoisdeInsetos ((fi + fd) insetos ),fd) insetos
 
+folhaspulverizadas (fi, fd) dias = fi + fd*dias
 
-
-
-
-
-
-
-
-
-funcao vv vp lp li dc
-funcao vv vp lp li
-
-
-
+q1 vv vp [] li dc = []
+q1 vv vp (p:ps) insetos dc 
+		|vp< vv*(folhasInsetos dc p li) = p:(q1 vv vp ps insetos dc)		
+		|otherwise = (q1 vv vp ps insetos dc)		

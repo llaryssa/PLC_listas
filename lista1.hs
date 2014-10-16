@@ -47,3 +47,12 @@ filtroGerarPares ((nome, sexo, quer):xs) pref
 list = [("Glaucio", 'h', True), ("Zeno", 'h', False), ("Josiela", 'm', True), ("Juliana", 'm', False), ("Priscillo", 'm', True), ("Robson", 'm', False)]
 pref = 'm'
 result = filtroGerarPares list pref
+
+
+-- Testando uma outra questão que eu n sei o número
+f [] s = True
+f s [] = False
+f (a:as) (b:bs) = if a==b then f as bs else False
+
+g w [] = []
+g w (l:ls) = if (f w l) then l:(g w ls) else g w ls

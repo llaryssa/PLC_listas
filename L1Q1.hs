@@ -22,10 +22,10 @@ dc = dias até a colheita
 
 -}
 folhasdepoisdeInsetos fi [] = fi
-folhasdepoisdeInsetos fi (((fd,(fmin,fmax)):xs)
+folhasdepoisdeInsetos fi (((fd,(fmin,fmax)):xs))
 											|(fmin<=fi&&fmax>=fi)  = folhasdepoisdeInsetos (fi - fd) xs
 											|otherwise = folhasdepoisdeInsetos fi xs
-folhasInsetos dias  planta [] = fi + dias*fd
+folhasInsetos dias  (fi, fd) [] = fi + dias*fd
 folhasInsetos dias  (fi, fd) insetos 
 						| (dias == 0) = fi
 						| otherwise = folhasInsetos (dias-1) (folhasdepoisdeInsetos ((fi + fd) insetos ),fd) insetos
@@ -33,6 +33,6 @@ folhasInsetos dias  (fi, fd) insetos
 folhaspulverizadas (fi, fd) dias = fi + fd*dias
 
 q1 vv vp [] li dc = []
-q1 vv vp (p:ps) insetos dc 
-		|((folhaspulverizadas p dc)*vv -vp)< vv*(folhasInsetos dc p li) = p:(q1 vv vp ps insetos dc)		
-		|otherwise = (q1 vv vp ps insetos dc)		
+q1 vv vp (p:ps) li dc 
+		|((folhaspulverizadas p dc)*vv -vp)< vv*(folhasInsetos dc p li) = p:(q1 vv vp ps li dc)		
+		|otherwise = (q1 vv vp ps li dc)		

@@ -1,3 +1,21 @@
+-- questao 2
+
+func1 :: a -> String -> (String->Bool) -> (a, String)
+func1 x w f | (f w)     = (x, w)
+			| otherwise = (x, "")
+
+func2 :: [(String->e)] -> [String] -> [(String->Bool)] -> [e]
+func2 l1 l2 l3 = map aplicaFuncao comb
+			  where comb = [(fparc x y) | fparc <- (map func1 l1), 
+										  x <- l2, y <- l3]
+
+aplicaFuncao :: (String->e, String) -> e
+aplicaFuncao (f, a) = f a
+
+
+
+
+
 -- questão 4
 
 gerarListaCombinacoes :: Int -> Int -> [[Int]]
@@ -62,7 +80,7 @@ sort (a:as) f = sort [b | b <- as, (f a b)] f
 					   ++ [a] ++
 				sort [c | c <- as, not (f a c)] f
 
-words = ["mandibula", "amor", "bola", "dor", "dragao", "manda", "xixi", "lilas", "vaso"]
+palavras = ["mandibula", "amor", "bola", "dor", "dragao", "manda", "xixi", "lilas", "vaso"]
 
 -- questao 8
 

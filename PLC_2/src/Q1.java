@@ -26,6 +26,8 @@ public class Q1 {
 
 	}
 
+	
+	
 	public void go() {
 
 		Arquivo arq = new Arquivo("Q1.in", "trash.out");
@@ -39,7 +41,8 @@ public class Q1 {
 		dinamicLocks(Runtime.getRuntime().availableProcessors());
 		while(!arq.isEndOfFile()){
 			X1 =arq.readLong(); 		
-			System.out.println("N: " + N + ", X: " + X1);	
+			System.out.println("X: " + X1);	
+			serial();
 			staticSync(X1);
 			dinamicSync(X1);
 			staticLocs(X1);
@@ -48,6 +51,9 @@ public class Q1 {
 
 	}
 
+	public void print(String methodName, long time,long threads ,  boolean primo){
+		System.out.println(time+" "+methodName+": "+threads+" Primo: "+primo);
+	}
 	public void serial() {
 		while (!turnLock.tryLock()) {
 			try {
@@ -120,8 +126,9 @@ public class Q1 {
 				e.printStackTrace();
 			}
 		}
-		System.out.println((System.nanoTime() - start) + " StaticSync: " + X
-				+ " Primo: " + primo);
+		
+		long time = System.nanoTime()-start;
+		print("StaticSync",time, X,primo);
 		turnLock.unlock();
 
 	}
@@ -180,8 +187,8 @@ public class Q1 {
 				e.printStackTrace();
 			}
 		}
-		System.out.println((System.nanoTime() - start) + " DynamicSync: " + X
-				+ " Primo: " + primo);
+		long time = System.nanoTime()-start;
+		print("DynamicSync",time, X,primo);
 		turnLock.unlock();
 
 	}
@@ -253,8 +260,8 @@ public class Q1 {
 				e.printStackTrace();
 			}
 		}
-		System.out.println((System.nanoTime() - start) + " StaticLocks: " + X
-				+ " Primo: " + primo);
+		long time = System.nanoTime()-start;
+		print("StaticLocs",time, X,primo);
 		turnLock.unlock();
 
 	}
@@ -331,8 +338,8 @@ public class Q1 {
 				e.printStackTrace();
 			}
 		}
-		System.out.println((System.nanoTime() - start) + " DynamicLocks: " + X
-				+ " Primo: " + primo);
+		long time = System.nanoTime()-start;
+		print("DynamicLocs",time, X,primo);
 		turnLock.unlock();
 	}
 }

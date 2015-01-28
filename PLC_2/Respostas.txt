@@ -1,0 +1,3 @@
+1)
+	A execução em paralelo começa a se tornar mais lenta que a serial quando o numero de threads chega na faixa dos 1000. Isso acontece porque tanto a criação quanto a troca de threads tem um custo de tempo associado.
+	 Com essa quantidade de threads utilizadas, o tempo de troca e escalonamento de threads começa a ser relevante, e impacta no desempenho do programa . Além de que, mais threads precisarão ser escalonadas.

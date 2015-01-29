@@ -44,7 +44,7 @@ public class Q1 {
 			System.out.println("X: " + X1);	
 			serial();
 			staticSync(X1);
-			dinamicSync(X1);
+			//dinamicSync(X1);
 			staticLocs(X1);
 			dinamicLocks(X1);
 		}
